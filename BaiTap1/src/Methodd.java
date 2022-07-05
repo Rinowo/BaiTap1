@@ -10,7 +10,7 @@ public class Methodd {
         return DriverManager.getConnection(dbURL, username, password);
     }
 
-    public void A() throws SQLException {
+    public void m1() throws SQLException {
         String query = "SELECT GV.maGV AS \"Mã Giáo Viên\", GV.hotenGV AS \"Họ Tên\", K.tenKhoa AS \"Khoa\"\n" +
                 "FROM [Giang Vien] GV INNER JOIN Khoa K \n" +
                 "ON GV.maKhoa = K.maKhoa\n";
@@ -25,7 +25,7 @@ public class Methodd {
         }
     }
 
-    public void B() throws SQLException {
+    public void m2() throws SQLException {
         String query = "SELECT GV.maGV AS \"Mã Giáo Viên\", GV.hotenGV AS \"Họ Tên\", K.tenKhoa AS \"Khoa\" \n" +
                 "FROM [Giang Vien] GV INNER JOIN Khoa K\n" +
                 "ON GV.maKhoa = K.maKhoa\n" +
@@ -41,7 +41,7 @@ public class Methodd {
         }
     }
 
-    public void C() throws SQLException {
+    public void m3() throws SQLException {
         String query = "SELECT COUNT(SV.maSV) AS [Số Sinh Viên]\n" +
                 "FROM [Sinh Vien] SV INNER JOIN Khoa K\n" +
                 "ON SV.maKhoa = K.maKhoa\n" +
@@ -55,7 +55,36 @@ public class Methodd {
         }
     }
 
-    public void D() throws SQLException {
+    public void m4() throws SQLException {
+        String query = "SELECT SV.maSV, SV.hotenSV \n" +
+                "FROM [Sinh Vien] SV INNER JOIN Khoa K \n" +
+                "ON SV.maKhoa = K.maKhoa\n" +
+                "WHERE K.tenKhoa = 'Toan'";
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()) {
+            int maSV = resultSet.getInt("maSV");
+            String hotenSV = resultSet.getString("hotenSV");
+            System.out.println("Mã sv: " + maSV + " Họ tên SV: " + hotenSV);
+        }
+    }
+
+    public void m5() throws SQLException {
+        String query = "SELECT COUNT(GV.maGV) AS soGV \n" +
+                "FROM [Giang Vien] GV INNER JOIN Khoa K \n" +
+                "ON GV.maKhoa = K.maKhoa \n" +
+                "WHERE K.tenKhoa = 'Cong Nghe Sinh Hoc'";
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()) {
+            int soGV = resultSet.getInt("soGV");
+            System.out.println("Số lượng GV: " + soGV);
+        }
+    }
+
+    public void m6() throws SQLException {
         String query = "SELECT SV.maSV, SV.hotenSV\n" +
                 "FROM [Sinh Vien] SV INNER JOIN [Huong Dan] HD \n" +
                 "ON SV.maSV = HD.maSV\n" +
@@ -70,7 +99,7 @@ public class Methodd {
         }
     }
 
-    public void E() throws SQLException {
+    public void m7() throws SQLException {
         String query = "SELECT K.maKhoa, COUNT(GV.maGV) AS [So Giang Vien] ,K.tenKhoa\n" +
                 "FROM [Giang Vien] GV INNER JOIN Khoa K \n" +
                 "ON GV.maKhoa = K.maKhoa\n" +
@@ -86,7 +115,7 @@ public class Methodd {
         }
     }
 
-    public void F() throws SQLException {
+    public void m8() throws SQLException {
         String query = "SELECT K.dienthoai\n" +
                 "FROM [Sinh Vien] SV INNER JOIN Khoa K\n" +
                 "ON SV.maKhoa = K.maKhoa\n" +
@@ -100,21 +129,7 @@ public class Methodd {
         }
     }
 
-    public void G() throws SQLException {
-        String query = "SELECT DT.tenDT \n" +
-                "FROM [De Tai] DT INNER JOIN [Huong Dan] HD \n" +
-                "ON DT.maDT = HD.maDT \n" +
-                "WHERE HD.maSV IS NULL";
-        Connection connection = getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
-        while (resultSet.next()) {
-            String tenDT = resultSet.getString("tenDT");
-            System.out.println("Tên đề tài: " + tenDT);
-        }
-    }
-
-    public void H() throws SQLException {
+    public void m9() throws SQLException {
         String query = "SELECT DT.maDT, DT.tenDT \n" +
                 "FROM [Huong Dan] HD INNER JOIN [De Tai] DT \n" +
                 "ON HD.maDT = DT.maDT\n" +
@@ -130,7 +145,7 @@ public class Methodd {
         }
     }
 
-    public void I() throws SQLException {
+    public void m10() throws SQLException {
         String query = "SELECT GV.maGV, GV.hotenGV, K.tenKhoa\n" +
                 "FROM Khoa K INNER JOIN [Giang Vien] GV \n" +
                 "ON GV.maKhoa = K.maKhoa INNER JOIN [Huong Dan] HD\n" +
@@ -148,7 +163,7 @@ public class Methodd {
         }
     }
 
-    public void J() throws SQLException {
+    public void m11() throws SQLException {
         String query = "SELECT DT.maDT, DT.tenDT \n" +
                 "FROM [Giang Vien] GV INNER JOIN [Huong Dan] HD \n" +
                 "ON GV.maGV = HD.maGV INNER JOIN [De Tai] DT \n" +
@@ -165,7 +180,7 @@ public class Methodd {
         }
     }
 
-    public void K() throws SQLException {
+    public void m12() throws SQLException {
         String query = "SELECT TOP 1 * \n" +
                 "FROM [De Tai] DT \n" +
                 "ORDER BY DT.kinhPhi DESC  ";
@@ -181,7 +196,7 @@ public class Methodd {
         }
     }
 
-    public void L() throws SQLException {
+    public void m13() throws SQLException {
         String query = "SELECT DT.maDT, DT.tenDT \n" +
                 "FROM [Huong Dan] HD INNER JOIN [De Tai] DT \n" +
                 "ON HD.maDT = DT.maDT\n" +
@@ -197,7 +212,7 @@ public class Methodd {
         }
     }
 
-    public void M() throws SQLException {
+    public void m14() throws SQLException {
         String query = "SELECT SV.maSV, SV.hotenSV \n" +
                 "FROM [Sinh Vien] SV INNER JOIN Khoa K \n" +
                 "ON SV.maKhoa = K.maKhoa \n" +
@@ -212,7 +227,7 @@ public class Methodd {
         }
     }
 
-    public void N() throws SQLException {
+    public void m15() throws SQLException {
         String query = "SELECT K.tenKhoa, COUNT(SV.maSV) AS [So Luong Sinh Vien] \n" +
                 "FROM Khoa K INNER JOIN [Sinh Vien] SV \n" +
                 "ON K.maKhoa = SV.maKhoa\n" +
@@ -227,7 +242,7 @@ public class Methodd {
         }
     }
 
-    public void O() throws SQLException {
+    public void m16() throws SQLException {
         String query = "SELECT SV.maSV, SV.hotenSV, SV.maKhoa \n" +
                 "FROM [Sinh Vien] SV INNER JOIN [Huong Dan] HD\n" +
                 "ON SV.maSV = HD.maSV INNER JOIN [De Tai] DT\n" +
@@ -244,7 +259,7 @@ public class Methodd {
         }
     }
 
-    public void P() throws SQLException {
+    public void m17() throws SQLException {
         String query = "SELECT SV.maSV, SV.hotenSV, SV.maKhoa, SV.namSinh \n" +
                 "FROM [Sinh Vien] SV INNER JOIN [Huong Dan] HD \n" +
                 "ON SV.maSV = HD.maSV \n" +
@@ -263,7 +278,7 @@ public class Methodd {
         }
     }
 
-    public void Q() throws SQLException {
+    public void m18() throws SQLException {
         String query = "SELECT * \n" +
                 "FROM [Sinh Vien] SV INNER JOIN [Huong Dan] HD \n" +
                 "ON SV.maSV = HD.maSV \n" +
