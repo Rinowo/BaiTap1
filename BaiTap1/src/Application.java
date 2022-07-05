@@ -28,6 +28,7 @@ public class Application {
                 case 15 -> methodd.m15();
                 case 16 -> methodd.m16();
                 case 17 -> methodd.m17();
+                case 18 -> methodd.m18();
             }
         }
     }
